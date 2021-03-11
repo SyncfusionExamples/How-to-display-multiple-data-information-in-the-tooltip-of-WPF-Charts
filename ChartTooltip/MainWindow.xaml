@@ -10,12 +10,18 @@
         <local:ViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <local:TooltipConverter x:Key="tooltipConverter"/>
         <DataTemplate x:Key="tooltipTemplate">
-            <TextBlock Text= "{Binding Converter={StaticResource tooltipConverter}}" FontWeight="Thin" FontStretch="Expanded" FontFamily="Segoe UI" Background="DarkBlue" Foreground="White" FontSize="19"/>
+            <StackPanel Orientation="Horizontal">
+                <!--Template element has DataContext as its Segment named Item. From it, you can access the correponding Model-->
+                <TextBlock  FontFamily="Segoe UI"  Foreground="White">
+                      <Run Text="{Binding Item.Country}"/>
+                      <Run Text=":"/>  
+                      <Run Text="{Binding Item.Population}"/>
+                   </TextBlock>
+                 </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel Margin="40">
         <syncfusion:SfChart Header="Population growth" Width="353" Height="298">
             <syncfusion:SfChart.PrimaryAxis>
                 <syncfusion:CategoryAxis/>
